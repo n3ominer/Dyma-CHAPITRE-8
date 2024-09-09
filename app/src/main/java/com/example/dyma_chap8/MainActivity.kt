@@ -2,6 +2,7 @@ package com.example.dyma_chap8
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity.todoRvAdapter = TodosAdapter(it)
             this@MainActivity.todoRv.adapter = this@MainActivity.todoRvAdapter
             this@MainActivity.todoRvAdapter.notifyDataSetChanged()
+        }
+
+        this.todoViewModel.error.observe(this) {error ->
+            Toast.makeText(this, "Erreur: $error", Toast.LENGTH_LONG).show()
         }
     }
 

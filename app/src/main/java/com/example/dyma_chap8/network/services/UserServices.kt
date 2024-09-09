@@ -1,6 +1,7 @@
 package com.example.dyma_chap8.network.services
 
 import com.example.dyma_chap8.network.dto.UserDto
+import com.example.dyma_chap8.network.response.ApiResponse
 import retrofit2.Call
 import retrofit2.http.GET
 
