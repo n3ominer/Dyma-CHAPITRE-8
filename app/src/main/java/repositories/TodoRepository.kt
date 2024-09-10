@@ -1,12 +1,14 @@
 package repositories
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.dyma_chap8.network.RetrofitClient
 import com.example.dyma_chap8.network.dto.UserDto
 import com.example.dyma_chap8.network.response.ApiResponse
 import com.example.dyma_chap8.network.services.UserServices
+import com.example.dyma_chap8.utils.TokenManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,8 +17,9 @@ class TodoRepository() {
     private val todoService = RetrofitClient.instance.create(UserServices::class.java)
     val todosLiveData = MutableLiveData<ApiResponse<List<UserDto>>>()
 
-    fun fetchUsers() {
-        val call = todoService.getAllUsers()
+    fun fetchUsers(context: Context) {
+        val tm = TokenManager(context)
+        val call = todoService.getAllUsers(token = tm.getToken() ?: "")
 
         call.enqueue(object : Callback<List<UserDto>> {
             @SuppressLint("NotifyDataSetChanged")

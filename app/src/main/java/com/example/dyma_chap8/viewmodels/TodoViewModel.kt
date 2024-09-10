@@ -1,5 +1,6 @@
 package com.example.dyma_chap8.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,8 +16,8 @@ class TodoViewModel: ViewModel() {
     val todos : LiveData<List<Todo>> get() = _todos
     val error: MutableLiveData<String> = MutableLiveData()
 
-    fun getTodos(owner: LifecycleOwner) {
-        this.todoRepo.fetchUsers()
+    fun getTodos(owner: LifecycleOwner, context: Context) {
+        this.todoRepo.fetchUsers(context)
         this.todoRepo.todosLiveData.observe(owner) { apiResponse ->
             if (apiResponse.data != null) {
                 // On a de la donnée

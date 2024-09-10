@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setupTodoRv()
         this.todoViewModel = TodoViewModel()
 
-        this.todoViewModel.getTodos(this)
+        this.todoViewModel.getTodos(this, this)
         this.observeTodoLiveData()
     }
 
