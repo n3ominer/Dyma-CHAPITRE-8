@@ -27,7 +27,7 @@ class TodoRepository() {
                 if (response.isSuccessful) {
                     val body = response.body()
                     body?.let { users ->
-                        val apiResponse = ApiResponse(listOf<UserDto>(), "Erreur client")
+                        val apiResponse = ApiResponse(users, null)
                         this@TodoRepository.todosLiveData.value = apiResponse
                     }
                     Log.d("Récupération succés", "Succès")
